@@ -1,0 +1,2 @@
+claim_id,line_id,batch_id,lob,vendor,service_from,reject_category,reject_code,severity,detected_ts
+BATCH::BATCH_20260406_VENDOR_C_COMMERCIAL_W07,,BATCH_20260406_VENDOR_C_COMMERCIAL_W07,COMMERCIAL,VENDOR_C,,DUPLICATE,DUP_RATE_GT_1PCT,HIGH,2026-03-02T11:20:31Z

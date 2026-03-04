@@ -1,0 +1,569 @@
+{
+  "batch_anomaly_guarantees": {
+    "R901_DUP_RATE_GT_1PCT": {
+      "batch_id": "BATCH_20260406_VENDOR_C_COMMERCIAL_W07",
+      "claims_in_batch": 200,
+      "duplicate_participating_claims": 10,
+      "rate": 0.05
+    },
+    "R902_ELIG_MISMATCH_GT_2PCT": {
+      "batch_id": "BATCH_20260330_VENDOR_B_COMMERCIAL_W06",
+      "claims_in_batch": 200,
+      "eligibility_mismatch_claims": 6,
+      "rate": 0.03
+    },
+    "R903_VOLUME_SHIFT_GT_15PCT": {
+      "basis": "COUNT(*) encounters_header rows per batch_id",
+      "batch_id": "BATCH_20260427_VENDOR_A_MEDICAID_W10",
+      "claims_in_batch": 320,
+      "deviation_rate": 0.6,
+      "trailing_8_week_median": 200.0
+    }
+  },
+  "contract_id": "GCT-DS-001",
+  "incidents": {
+    "W02_MEDICAID_VENDOR_A": {
+      "batch_id": "BATCH_20260302_VENDOR_A_MEDICAID_W02",
+      "rules": {
+        "R001_NULL_MEMBER_ID": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0001",
+            "CLM_W02_VENDOR_A_MEDICAID_0002",
+            "CLM_W02_VENDOR_A_MEDICAID_0003",
+            "CLM_W02_VENDOR_A_MEDICAID_0004",
+            "CLM_W02_VENDOR_A_MEDICAID_0005",
+            "CLM_W02_VENDOR_A_MEDICAID_0006",
+            "CLM_W02_VENDOR_A_MEDICAID_0007",
+            "CLM_W02_VENDOR_A_MEDICAID_0008",
+            "CLM_W02_VENDOR_A_MEDICAID_0009",
+            "CLM_W02_VENDOR_A_MEDICAID_0010"
+          ],
+          "count": 10
+        },
+        "R002_NULL_CLAIM_ID": {
+          "count": 5,
+          "header_row_indices": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        "R003_NULL_PROVIDER_NPI": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0016",
+            "CLM_W02_VENDOR_A_MEDICAID_0017",
+            "CLM_W02_VENDOR_A_MEDICAID_0018",
+            "CLM_W02_VENDOR_A_MEDICAID_0019",
+            "CLM_W02_VENDOR_A_MEDICAID_0020",
+            "CLM_W02_VENDOR_A_MEDICAID_0021",
+            "CLM_W02_VENDOR_A_MEDICAID_0022",
+            "CLM_W02_VENDOR_A_MEDICAID_0023",
+            "CLM_W02_VENDOR_A_MEDICAID_0024",
+            "CLM_W02_VENDOR_A_MEDICAID_0025"
+          ],
+          "count": 10
+        },
+        "R004_NULL_SERVICE_FROM": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0026",
+            "CLM_W02_VENDOR_A_MEDICAID_0027",
+            "CLM_W02_VENDOR_A_MEDICAID_0028",
+            "CLM_W02_VENDOR_A_MEDICAID_0029",
+            "CLM_W02_VENDOR_A_MEDICAID_0030"
+          ],
+          "count": 5
+        },
+        "R005_NPI_BAD_LENGTH": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0031",
+            "CLM_W02_VENDOR_A_MEDICAID_0032",
+            "CLM_W02_VENDOR_A_MEDICAID_0033",
+            "CLM_W02_VENDOR_A_MEDICAID_0034",
+            "CLM_W02_VENDOR_A_MEDICAID_0035",
+            "CLM_W02_VENDOR_A_MEDICAID_0036",
+            "CLM_W02_VENDOR_A_MEDICAID_0037",
+            "CLM_W02_VENDOR_A_MEDICAID_0038",
+            "CLM_W02_VENDOR_A_MEDICAID_0039",
+            "CLM_W02_VENDOR_A_MEDICAID_0040"
+          ],
+          "count": 10
+        },
+        "R006_NPI_NOT_NUMERIC": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0041",
+            "CLM_W02_VENDOR_A_MEDICAID_0042",
+            "CLM_W02_VENDOR_A_MEDICAID_0043",
+            "CLM_W02_VENDOR_A_MEDICAID_0044",
+            "CLM_W02_VENDOR_A_MEDICAID_0045",
+            "CLM_W02_VENDOR_A_MEDICAID_0046",
+            "CLM_W02_VENDOR_A_MEDICAID_0047",
+            "CLM_W02_VENDOR_A_MEDICAID_0048",
+            "CLM_W02_VENDOR_A_MEDICAID_0049",
+            "CLM_W02_VENDOR_A_MEDICAID_0050"
+          ],
+          "count": 10
+        },
+        "R007_NPI_NOT_FOUND": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0051",
+            "CLM_W02_VENDOR_A_MEDICAID_0052",
+            "CLM_W02_VENDOR_A_MEDICAID_0053",
+            "CLM_W02_VENDOR_A_MEDICAID_0054",
+            "CLM_W02_VENDOR_A_MEDICAID_0055",
+            "CLM_W02_VENDOR_A_MEDICAID_0056",
+            "CLM_W02_VENDOR_A_MEDICAID_0057",
+            "CLM_W02_VENDOR_A_MEDICAID_0058",
+            "CLM_W02_VENDOR_A_MEDICAID_0059",
+            "CLM_W02_VENDOR_A_MEDICAID_0060"
+          ],
+          "count": 10
+        },
+        "R008_SERVICE_TO_BEFORE_FROM": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0061",
+            "CLM_W02_VENDOR_A_MEDICAID_0062",
+            "CLM_W02_VENDOR_A_MEDICAID_0063",
+            "CLM_W02_VENDOR_A_MEDICAID_0064",
+            "CLM_W02_VENDOR_A_MEDICAID_0065",
+            "CLM_W02_VENDOR_A_MEDICAID_0066",
+            "CLM_W02_VENDOR_A_MEDICAID_0067",
+            "CLM_W02_VENDOR_A_MEDICAID_0068",
+            "CLM_W02_VENDOR_A_MEDICAID_0069",
+            "CLM_W02_VENDOR_A_MEDICAID_0070"
+          ],
+          "count": 10
+        },
+        "R009_FUTURE_SERVICE_DATE": {
+          "claim_ids": [
+            "CLM_W02_VENDOR_A_MEDICAID_0071",
+            "CLM_W02_VENDOR_A_MEDICAID_0072",
+            "CLM_W02_VENDOR_A_MEDICAID_0073",
+            "CLM_W02_VENDOR_A_MEDICAID_0074",
+            "CLM_W02_VENDOR_A_MEDICAID_0075",
+            "CLM_W02_VENDOR_A_MEDICAID_0076",
+            "CLM_W02_VENDOR_A_MEDICAID_0077",
+            "CLM_W02_VENDOR_A_MEDICAID_0078",
+            "CLM_W02_VENDOR_A_MEDICAID_0079",
+            "CLM_W02_VENDOR_A_MEDICAID_0080"
+          ],
+          "count": 10
+        }
+      },
+      "storyline_label": "ONBOARDING_BLOCKERS",
+      "week_start": "2026-03-02"
+    },
+    "W06_COMMERCIAL_VENDOR_B": {
+      "batch_id": "BATCH_20260330_VENDOR_B_COMMERCIAL_W06",
+      "rules": {
+        "R010_SERVICE_OUTSIDE_COVERAGE": {
+          "claim_ids": [
+            "CLM_W06_VENDOR_B_COMMERCIAL_0001",
+            "CLM_W06_VENDOR_B_COMMERCIAL_0002",
+            "CLM_W06_VENDOR_B_COMMERCIAL_0003",
+            "CLM_W06_VENDOR_B_COMMERCIAL_0004",
+            "CLM_W06_VENDOR_B_COMMERCIAL_0005",
+            "CLM_W06_VENDOR_B_COMMERCIAL_0006"
+          ],
+          "count": 6
+        }
+      },
+      "storyline_label": "ELIGIBILITY_INCIDENT",
+      "week_start": "2026-03-30"
+    },
+    "W07_COMMERCIAL_VENDOR_C": {
+      "batch_id": "BATCH_20260406_VENDOR_C_COMMERCIAL_W07",
+      "rules": {
+        "R011_DUP_CLAIM_KEY": {
+          "duplicate_key_count": 5,
+          "participant_claim_ids": [
+            "CLM_W07_VENDOR_C_COMMERCIAL_0001",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0002",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0003",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0004",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0005",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0001_CLONE001",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0002_CLONE002",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0003_CLONE003",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0004_CLONE004",
+            "CLM_W07_VENDOR_C_COMMERCIAL_0005_CLONE005"
+          ],
+          "removed_claim_count": 5,
+          "source_clone_pairs": [
+            {
+              "clone_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0001_CLONE001",
+              "source_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0001"
+            },
+            {
+              "clone_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0002_CLONE002",
+              "source_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0002"
+            },
+            {
+              "clone_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0003_CLONE003",
+              "source_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0003"
+            },
+            {
+              "clone_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0004_CLONE004",
+              "source_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0004"
+            },
+            {
+              "clone_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0005_CLONE005",
+              "source_claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0005"
+            }
+          ]
+        },
+        "R012_PAID_GT_ALLOWED": {
+          "count": 20,
+          "line_refs": [
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0006",
+              "line_id": "LN0008206"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0007",
+              "line_id": "LN0008207"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0008",
+              "line_id": "LN0008208"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0009",
+              "line_id": "LN0008209"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0010",
+              "line_id": "LN0008210"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0011",
+              "line_id": "LN0008211"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0012",
+              "line_id": "LN0008212"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0013",
+              "line_id": "LN0008213"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0014",
+              "line_id": "LN0008214"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0015",
+              "line_id": "LN0008215"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0016",
+              "line_id": "LN0008216"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0017",
+              "line_id": "LN0008217"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0018",
+              "line_id": "LN0008218"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0019",
+              "line_id": "LN0008219"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0020",
+              "line_id": "LN0008220"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0021",
+              "line_id": "LN0008221"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0022",
+              "line_id": "LN0008222"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0023",
+              "line_id": "LN0008223"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0024",
+              "line_id": "LN0008224"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0025",
+              "line_id": "LN0008225"
+            }
+          ]
+        },
+        "R013_ALLOWED_GT_CHARGE": {
+          "count": 20,
+          "line_refs": [
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0026",
+              "line_id": "LN0008226"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0027",
+              "line_id": "LN0008227"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0028",
+              "line_id": "LN0008228"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0029",
+              "line_id": "LN0008229"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0030",
+              "line_id": "LN0008230"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0031",
+              "line_id": "LN0008231"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0032",
+              "line_id": "LN0008232"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0033",
+              "line_id": "LN0008233"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0034",
+              "line_id": "LN0008234"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0035",
+              "line_id": "LN0008235"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0036",
+              "line_id": "LN0008236"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0037",
+              "line_id": "LN0008237"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0038",
+              "line_id": "LN0008238"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0039",
+              "line_id": "LN0008239"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0040",
+              "line_id": "LN0008240"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0041",
+              "line_id": "LN0008241"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0042",
+              "line_id": "LN0008242"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0043",
+              "line_id": "LN0008243"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0044",
+              "line_id": "LN0008244"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0045",
+              "line_id": "LN0008245"
+            }
+          ]
+        },
+        "R014_NULL_PROC": {
+          "count": 20,
+          "line_refs": [
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0046",
+              "line_id": "LN0008246"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0047",
+              "line_id": "LN0008247"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0048",
+              "line_id": "LN0008248"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0049",
+              "line_id": "LN0008249"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0050",
+              "line_id": "LN0008250"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0051",
+              "line_id": "LN0008251"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0052",
+              "line_id": "LN0008252"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0053",
+              "line_id": "LN0008253"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0054",
+              "line_id": "LN0008254"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0055",
+              "line_id": "LN0008255"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0056",
+              "line_id": "LN0008256"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0057",
+              "line_id": "LN0008257"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0058",
+              "line_id": "LN0008258"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0059",
+              "line_id": "LN0008259"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0060",
+              "line_id": "LN0008260"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0061",
+              "line_id": "LN0008261"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0062",
+              "line_id": "LN0008262"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0063",
+              "line_id": "LN0008263"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0064",
+              "line_id": "LN0008264"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0065",
+              "line_id": "LN0008265"
+            }
+          ]
+        },
+        "R015_NULL_DX": {
+          "count": 20,
+          "line_refs": [
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0066",
+              "line_id": "LN0008266"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0067",
+              "line_id": "LN0008267"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0068",
+              "line_id": "LN0008268"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0069",
+              "line_id": "LN0008269"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0070",
+              "line_id": "LN0008270"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0071",
+              "line_id": "LN0008271"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0072",
+              "line_id": "LN0008272"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0073",
+              "line_id": "LN0008273"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0074",
+              "line_id": "LN0008274"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0075",
+              "line_id": "LN0008275"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0076",
+              "line_id": "LN0008276"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0077",
+              "line_id": "LN0008277"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0078",
+              "line_id": "LN0008278"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0079",
+              "line_id": "LN0008279"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0080",
+              "line_id": "LN0008280"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0081",
+              "line_id": "LN0008281"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0082",
+              "line_id": "LN0008282"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0083",
+              "line_id": "LN0008283"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0084",
+              "line_id": "LN0008284"
+            },
+            {
+              "claim_id": "CLM_W07_VENDOR_C_COMMERCIAL_0085",
+              "line_id": "LN0008285"
+            }
+          ]
+        }
+      },
+      "storyline_label": "DUP_REPLAY_INCIDENT",
+      "week_start": "2026-04-06"
+    }
+  },
+  "locked": {
+    "batch_id_format": "BATCH_<YYYYMMDD>_<VENDOR>_<LOB>_W<NN>",
+    "run_date": "2026-05-10",
+    "start_week": "2026-02-23",
+    "weeks": 10
+  },
+  "run_date": "2026-05-10",
+  "seed": 42
+}

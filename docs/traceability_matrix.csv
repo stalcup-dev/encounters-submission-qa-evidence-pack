@@ -1,0 +1,19 @@
+requirement,rule_id,test_ids,artifact_path
+member_id missing on header,R001_NULL_MEMBER_ID,UAT-001,/outputs/uat/UAT-001/
+claim_id missing/blank on header,R002_NULL_CLAIM_ID,UAT-002,/outputs/uat/UAT-002/
+provider_npi missing on header,R003_NULL_PROVIDER_NPI,UAT-003,/outputs/uat/UAT-003/
+service_from missing on header,R004_NULL_SERVICE_FROM,UAT-004,/outputs/uat/UAT-004/
+provider_npi not 10 digits,R005_NPI_BAD_LENGTH,UAT-005,/outputs/uat/UAT-005/
+provider_npi contains non-numeric chars,R006_NPI_NOT_NUMERIC,UAT-006,/outputs/uat/UAT-006/
+provider_npi not found in reference providers,R007_NPI_NOT_FOUND,UAT-007,/outputs/uat/UAT-007/
+service_to before service_from,R008_SERVICE_TO_BEFORE_FROM,UAT-008,/outputs/uat/UAT-008/
+service date in future,R009_FUTURE_SERVICE_DATE,UAT-009,/outputs/uat/UAT-009/
+service dates outside coverage window,R010_SERVICE_OUTSIDE_COVERAGE,UAT-010,/outputs/uat/UAT-010/
+duplicate claim key within batch,R011_DUP_CLAIM_KEY,UAT-011,/outputs/uat/UAT-011/
+paid greater than allowed,R012_PAID_GT_ALLOWED,UAT-012,/outputs/uat/UAT-012/
+allowed greater than charge,R013_ALLOWED_GT_CHARGE,UAT-013,/outputs/uat/UAT-013/
+procedure code missing on line,R014_NULL_PROC,UAT-014,/outputs/uat/UAT-014/
+diagnosis code missing on line,R015_NULL_DX,UAT-014,/outputs/uat/UAT-014/
+duplicate rate exceeds 1 percent in batch,R901_DUP_RATE_GT_1PCT,UAT-015,/outputs/uat/UAT-015/
+eligibility mismatch rate exceeds 2 percent in batch,R902_ELIG_MISMATCH_GT_2PCT,UAT-016,/outputs/uat/UAT-016/
+weekly volume shift exceeds 15 percent vs trailing median,R903_VOLUME_SHIFT_GT_15PCT,UAT-017,/outputs/uat/UAT-017/

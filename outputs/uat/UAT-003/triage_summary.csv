@@ -1,0 +1,2 @@
+week_start,lob,vendor,reject_category,severity,reject_count,affected_claims
+2026-03-02,MEDICAID,VENDOR_A,REQUIRED_FIELD,BLOCKER,30,25

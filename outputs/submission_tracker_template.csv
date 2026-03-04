@@ -1,0 +1,4 @@
+batch_id,submit_date,agency,lob,vendor,claims_in_batch,rejects_total,blockers,high,monitor,status,owner,sla_due,rerun_date,notes
+BATCH_2026-03-02_MEDICAID_VENDOR_A,2026-03-03,STATE_MEDICAID,MEDICAID,VENDOR_A,200,70,70,0,0,REJECTED,Encounters Ops Lead,2026-03-05,2026-03-04,"W02 onboarding blockers; hold submission and assign vendor remediation. Canonical statuses: PREP|VALIDATED|SUBMITTED|REJECTED|REPROCESSING|RESUBMITTED|CLOSED."
+BATCH_2026-03-30_COMMERCIAL_VENDOR_B,2026-03-31,STATE_COMMERCIAL,COMMERCIAL,VENDOR_B,200,7,0,7,0,REPROCESSING,Vendor B Manager,2026-04-02,2026-04-01,"W06 eligibility incident (R902 context); coverage mapping fix in progress before rerun."
+BATCH_2026-04-06_COMMERCIAL_VENDOR_C,2026-04-08,FEDERAL_PARTNER,COMMERCIAL,VENDOR_C,200,131,0,11,120,RESUBMITTED,IT Data QA,2026-04-10,2026-04-09,"W07 duplicate replay + line-level monitors resolved; batch regenerated, revalidated, and resubmitted."

@@ -1,0 +1,14 @@
+timestamp_utc: 2026-03-03T04:43:06.649917+00:00
+test_id: UAT-004
+rule_ids: R004_NULL_SERVICE_FROM
+reject_codes: NULL_SERVICE_FROM
+seed: 42
+run_date: 2026-05-10
+commands:
+  - C:\Users\halol\Desktop\encounters\.venv\Scripts\python.exe C:\Users\halol\Desktop\encounters\src\verify_dataset.py --run_date 2026-05-10
+    output_head: [PASS] RunDate/locked_2026-05-10 :: run_date=2026-05-10
+  - C:\Users\halol\Desktop\encounters\.venv\Scripts\python.exe C:\Users\halol\Desktop\encounters\src\verify_outputs.py
+    output_head: GCT-061 Output Verifier
+reject_rows: 5
+triage_rows: 1
+triage_reject_count_sum: 30
