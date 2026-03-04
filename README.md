@@ -1,7 +1,7 @@
 # Start Here (2 minutes)
-1. [docs/Encounters_QA_Report.html](docs/Encounters_QA_Report.html) - story + findings
+1. [docs/Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf) - story + findings
 2. [docs/runbook_v0_1.md](docs/runbook_v0_1.md) - SOP (how ops runs it)
-3. [docs/UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html) - UAT + traceability proof
+3. [docs/UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf) - UAT + traceability proof
 4. [docs/CASE_STUDY.md](docs/CASE_STUDY.md) - hiring manager narrative
 5. [docs/AUDIT_RECEIPT.md](docs/AUDIT_RECEIPT.md) - audit trail receipt
 
