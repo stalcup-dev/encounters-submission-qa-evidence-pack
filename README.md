@@ -57,7 +57,9 @@ Detailed map: [docs/REPO_MAP.md](docs/REPO_MAP.md)
 - Traceability matrix: [docs/traceability_matrix.csv](docs/traceability_matrix.csv)
 - Defect triage template: [docs/defect_triage_template.md](docs/defect_triage_template.md)
 - KPI snapshot (generated): [docs/kpi_snapshot.md](docs/kpi_snapshot.md)
-- HTML reports:
+- Reports (PDF + HTML):
+  - [docs/Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf)
+  - [docs/UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf)
   - [docs/Encounters_QA_Report.html](docs/Encounters_QA_Report.html)
   - [docs/UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html)
 - Export script: [scripts/export_reports.ps1](scripts/export_reports.ps1)
@@ -101,7 +103,7 @@ Expected result: verifiers pass and refreshed HTML reports are written to `docs/
 1. Run release gate: `powershell -ExecutionPolicy Bypass -File` [scripts/release_gate.ps1](scripts/release_gate.ps1)
 2. Manual PDF step (only if PDF export fails): print [docs/Encounters_QA_Report.html](docs/Encounters_QA_Report.html) and [docs/UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html) to PDF.
 3. Artifacts land in:
-   - `docs/`: [Encounters_QA_Report.html](docs/Encounters_QA_Report.html), [UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html), [kpi_snapshot.md](docs/kpi_snapshot.md), [AUDIT_RECEIPT.md](docs/AUDIT_RECEIPT.md)
+   - `docs/`: [Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf), [UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf), [Encounters_QA_Report.html](docs/Encounters_QA_Report.html), [UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html), [kpi_snapshot.md](docs/kpi_snapshot.md), [AUDIT_RECEIPT.md](docs/AUDIT_RECEIPT.md)
    - `outputs/`: rejects, triage, story map, submission tracker template, and UAT folder evidence
 
 ## Optional: Re-Execute Notebooks
