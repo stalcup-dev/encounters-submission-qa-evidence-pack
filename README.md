@@ -1,134 +1,310 @@
-# Start Here (2 minutes)
-1. [docs/Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf) - story + findings
-2. [docs/runbook_v0_1.md](docs/runbook_v0_1.md) - SOP (how ops runs it)
-3. [docs/UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf) - UAT + traceability proof
-4. [docs/CASE_STUDY.md](docs/CASE_STUDY.md) - hiring manager narrative
-5. [docs/AUDIT_RECEIPT.md](docs/AUDIT_RECEIPT.md) - audit trail receipt
+# 🏥 Encounters Submission QA Evidence Pack
 
-# Encounters QA Lab (Encounters BA Evidence Pack)
+> **A production-grade, end-to-end payer encounter QA system** — built to catch the defects that trigger agency rejections, financial penalties, and compliance findings *before* a single record leaves the building.
 
-## What this is
-### Context & Scope Scenario (public-safe)
-HarborPoint Health Plan receives weekly encounter batches from delegated vendors for multiple lines of business (e.g., Medicaid and Commercial). Before submitting these encounters to external reporting endpoints (state/federal programs), the Encounters team must catch blocking defects, prioritize remediation, and document a defensible audit trail.
+<div align="center">
 
-This evidence pack simulates that workflow end-to-end:
-- Row-level rejects (missing member/provider fields, invalid dates, eligibility outside coverage, duplicates, etc.)
-- Batch-level flags when operational thresholds are exceeded (duplicate rate >1%, eligibility mismatch >2%, volume shift >15%)
-- Ops decisions: Hold / Reprocess / Submit-with-monitoring
-- UAT traceability for upgrades and vendor feed changes
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-yellow?logo=duckdb&logoColor=black)](https://duckdb.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![PHI-Free](https://img.shields.io/badge/Data-PHI--Free%20%26%20Synthetic-green)](data_raw/)
+[![Reproducible](https://img.shields.io/badge/Reproducibility-Seed--Locked-purple)](src/generate_dataset.py)
+[![UAT](https://img.shields.io/badge/UAT-17%20Scenarios%20Passed-brightgreen)](docs/UAT_Evidence_Pack.pdf)
 
-Out of scope: This is not provider billing QA and not an EDI/837 parser; it's tabular pre-submit QA for payer encounter reporting.
+</div>
 
-Readable summary of a 10-week encounters QA story.
+---
 
-## Repo Map
-Quick map of where key assets live:
+## ⚡ Start Here — 2-Minute Orientation
 
-- `docs/`: runbook, report exports, UAT evidence, KPI snapshot, and governance docs.
-- `notebooks/`: validation, analysis, and UAT notebooks.
-- `outputs/`: generated CSV outputs, screenshots, and UAT run artifacts.
-- `data_raw/`: synthetic source inputs and reference tables.
-- `src/`: dataset generator, verifiers, and snapshot/receipt builders.
-- `scripts/`: release/export automation scripts.
-
-Detailed map: [docs/REPO_MAP.md](docs/REPO_MAP.md)
-
-## Outputs Index
-- Source of truth: [SOURCE_OF_TRUTH_Encounters_QA_Lab.md](SOURCE_OF_TRUTH_Encounters_QA_Lab.md)
-- Data inputs:
-  - [data_raw/encounters_header.csv](data_raw/encounters_header.csv)
-  - [data_raw/encounters_lines.csv](data_raw/encounters_lines.csv)
-  - [data_raw/reference_members.csv](data_raw/reference_members.csv)
-  - [data_raw/reference_providers.csv](data_raw/reference_providers.csv)
-- Validation notebook: [notebooks/01_validate.ipynb](notebooks/01_validate.ipynb)
-- Analysis notebook: [notebooks/02_analysis.ipynb](notebooks/02_analysis.ipynb)
-- UAT notebook: [notebooks/03_uat.ipynb](notebooks/03_uat.ipynb)
-- Core outputs:
-  - [outputs/rejects.csv](outputs/rejects.csv)
-  - [outputs/triage_summary.csv](outputs/triage_summary.csv)
-  - [outputs/story_map.csv](outputs/story_map.csv)
-  - [outputs/dataset_receipt.md](outputs/dataset_receipt.md)
-- Screenshots:
-  - [outputs/screenshots/top_rejects.png](outputs/screenshots/top_rejects.png)
-  - [outputs/screenshots/triage_trend.png](outputs/screenshots/triage_trend.png)
-- UAT evidence root: [outputs/uat/](outputs/uat/)
-- Runbook SOP: [docs/runbook_v0_1.md](docs/runbook_v0_1.md)
-- UAT plan: [docs/uat_test_plan.md](docs/uat_test_plan.md)
-- Traceability matrix: [docs/traceability_matrix.csv](docs/traceability_matrix.csv)
-- Defect triage template: [docs/defect_triage_template.md](docs/defect_triage_template.md)
-- KPI snapshot (generated): [docs/kpi_snapshot.md](docs/kpi_snapshot.md)
-- Reports (PDF + HTML):
-  - [docs/Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf)
-  - [docs/UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf)
-  - [docs/Encounters_QA_Report.html](docs/Encounters_QA_Report.html)
-  - [docs/UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html)
-- Export script: [scripts/export_reports.ps1](scripts/export_reports.ps1)
-
-## KPI Snapshot (Generated)
-Current KPIs are generated directly from outputs to prevent drift:
-- [docs/kpi_snapshot.md](docs/kpi_snapshot.md)
-- Rebuild with: `python src/build_kpi_snapshot.py`
-
-## Decisions
-| Signal | Operational Decision |
+| Document | What It Is |
 |---|---|
-| BLOCKER > 0 | Do not submit. Resolve and revalidate first. |
-| HIGH batch flags (`DUP_RATE_GT_1PCT`, `ELIG_MISMATCH_GT_2PCT`) | Remediate/reprocess impacted batch before submit/resubmit. |
-| MONITOR (`VOLUME_SHIFT_GT_15PCT` + FINANCIAL/CODE_SET) | Submit with controls; trend weekly and capture RCA-lite notes. |
+| 📄 [Encounters QA Report (PDF)](docs/Encounters_QA_Report.pdf) | Executive story + findings: 10-week incident arc, charts, decisions |
+| 📋 [Runbook SOP](docs/runbook_v0_1.md) | Step-by-step ops procedure: prepare → validate → submit → remediate |
+| ✅ [UAT Evidence Pack (PDF)](docs/UAT_Evidence_Pack.pdf) | 17 test scenarios with pass/fail traceability proof |
+| 🧠 [Case Study (Hiring Manager Narrative)](docs/CASE_STUDY.md) | Full problem/solution/impact write-up |
+| 🔎 [Audit Receipt](docs/AUDIT_RECEIPT.md) | Cryptographic audit trail for reproducibility |
 
-## Screenshots
-![Top Reject Codes](outputs/screenshots/top_rejects.png)
+---
 
-![Weekly Triage Trend](outputs/screenshots/triage_trend.png)
+## 🎯 The Business Problem
 
-## Quick Start (Contract-Locked Repro)
-Run from repo root:
+**Every week, health plans receive encounter batches from delegated vendors.** Before submitting those records to state Medicaid agencies or federal reporting endpoints, *someone* has to validate them — and that process is frequently manual, inconsistent, and opaque.
 
-```powershell
-.\.venv\Scripts\Activate.ps1
+When it fails:
+
+```
+❌  Encounters submitted with blocking defects
+        ↓
+    Agency rejects the batch
+        ↓
+    Financial penalties + compliance findings
+        ↓
+    Manual rework spiral — re-pull, re-clean, re-submit
+        ↓
+    Ops team loses days. Leadership loses confidence.
 ```
 
+**This system solves that.** It automates the full pre-submission QA workflow, surfaces every defect with a severity tier and ops decision, and generates an auditable evidence trail that satisfies both regulators and hiring managers.
+
+---
+
+## 📊 Results at a Glance
+
+> All KPIs are generated live from outputs — no manual entry, no drift. See [`docs/kpi_snapshot.md`](docs/kpi_snapshot.md).
+
+<div align="center">
+
+| Metric | Value |
+|---|:---:|
+| 📦 Total Encounters Validated | **~3,500 records** across 10 weeks |
+| 🚨 Total Rejects Triaged | **219** |
+| 🔴 BLOCKER Defects Resolved | **80 / 80** — 100% resolved before submission |
+| 🟠 HIGH Defects Remediated | **18 / 18** — 100% remediated |
+| 🟡 MONITOR Signals Tracked | **121** — submitted with controls |
+| 🚩 Batch Anomaly Flags Triggered | **3** (R901, R902, R903) — all resolved |
+| ✅ UAT Scenarios Passed | **17 / 17** |
+| 🔁 Clean Weeks at Story Close | **W10 closed with zero BLOCKERs / HIGH flags** |
+
+</div>
+
+### Reject Severity Breakdown
+
+```
+BLOCKER  ████████████████████░░░░░░░░░░░░░░░  80  (36%)  → Do not submit
+HIGH     ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  18  ( 8%)  → Remediate first
+MONITOR  ███████████████████████████░░░░░░░░ 121  (55%)  → Submit with controls
+```
+
+### Top Reject Codes
+
+| Rank | Reject Code | Count | Severity |
+|:---:|---|:---:|---|
+| 1 | `ALLOWED_GT_CHARGE` | 40 | MONITOR |
+| 2 | `PAID_GT_ALLOWED` | 40 | MONITOR |
+| 3 | `NULL_DX` | 20 | BLOCKER |
+| 4 | `NULL_PROC` | 20 | BLOCKER |
+| 5 | `DUP_CLAIM_KEY` | 10 | HIGH |
+
+---
+
+## 📈 Visual Evidence
+
+### Top Reject Codes — Weekly View
+![Top Reject Codes](outputs/screenshots/top_rejects.png)
+
+### Weekly Triage Trend — 10-Week Story Arc
+![Weekly Triage Trend](outputs/screenshots/triage_trend.png)
+
+---
+
+## 🏗️ Case Study: How I Solved It
+
+### The Scenario
+**HarborPoint Health Plan** (fictional MCO) receives weekly encounter batches from delegated vendors for Medicaid and Commercial LOBs. The ops team needed a reliable, repeatable QA gate before submitting to external reporting endpoints — with clear ops decisions, not just raw error logs.
+
+### The 10-Week Story Arc
+
+```
+W02  🔴 BLOCKER spike — 70 rejects (missing fields, provider gaps, date logic)
+         Decision: HOLD. Remediated and resubmitted.
+         ↓
+W03–W05  ✅ Clean weeks. Submission gates pass.
+         ↓
+W06  🟠 Eligibility risk — 7 HIGH rejects + R902 anomaly flag (>2% mismatch rate)
+         Decision: HOLD for remediation. Batch reprocessed.
+         ↓
+W07  🟠🟡 Heaviest week — 11 HIGH (duplicates + R901 flag) + 120 MONITOR signals
+         Decision: HIGH batch held/reprocessed; MONITORs submitted with controls.
+         ↓
+W10  🟡 Clean close — R903 volume-shift flag only (>15% week-over-week)
+         Decision: MONITOR-only; submitted with weekly trend tracking.
+```
+
+This arc exercises **every decision type** the ops team faces — and is fully traceable through every output artifact.
+
+### The Solution Architecture
+
+```
+Weekly Vendor Feed
+        │
+        ▼
+┌───────────────────┐     ┌────────────────────────┐
+│  Row-Level        │     │  Batch Anomaly Rules   │
+│  Validation       │────▶│  R901: DUP_RATE > 1%   │
+│  (01_validate.    │     │  R902: ELIG_MM > 2%    │
+│   ipynb)          │     │  R903: VOL_SHIFT > 15% │
+└───────────────────┘     └────────────────────────┘
+        │                           │
+        ▼                           ▼
+┌───────────────────────────────────────────┐
+│           outputs/rejects.csv             │
+│     (row-level: code, severity, batch)    │
+└───────────────────────────────────────────┘
+        │
+        ▼
+┌───────────────────────────────────────────┐
+│        outputs/triage_summary.csv         │
+│   (weekly rollup: severity × reject_code) │
+└───────────────────────────────────────────┘
+        │
+        ▼
+┌───────────────────────────────────────────┐
+│       Ops Decision Gate                   │
+│  BLOCKER > 0 → HOLD                       │
+│  HIGH batch flags → REMEDIATE             │
+│  MONITOR only → SUBMIT WITH CONTROLS      │
+└───────────────────────────────────────────┘
+        │
+        ▼
+   docs/Encounters_QA_Report.html
+   (executive-facing; code hidden)
+```
+
+---
+
+## 🧰 Tech Stack
+
+| Tool | Role |
+|---|---|
+| **Python 3.11** | Dataset generation, validation logic, verifiers, KPI builder |
+| **DuckDB** | In-process analytical queries across CSV outputs |
+| **Jupyter Notebooks** | Validation (`01`), Analysis (`02`), UAT (`03`) |
+| **pandas / matplotlib** | Triage tables, reject charts, trend visualizations |
+| **PowerShell** | Release gate automation, HTML/PDF export scripts |
+| **nbconvert** | Code-hidden HTML + PDF report export |
+
+---
+
+## ⚙️ Operational Decision Framework
+
+| Signal | Operational Decision |
+|---|---|
+| 🔴 `BLOCKER > 0` | **Do not submit.** Resolve and revalidate first. |
+| 🟠 `DUP_RATE_GT_1PCT` (R901) | **Remediate/reprocess** impacted batch before submit. |
+| 🟠 `ELIG_MISMATCH_GT_2PCT` (R902) | **Remediate/reprocess** impacted batch before submit. |
+| 🟡 `VOLUME_SHIFT_GT_15PCT` (R903) | **Submit with controls;** trend weekly, capture RCA-lite notes. |
+
+---
+
+## 📁 Repo Map
+
+```
+encounters-submission-qa-evidence-pack/
+│
+├── 📓 notebooks/
+│   ├── 01_validate.ipynb     ← Core validation logic + reject generation
+│   ├── 02_analysis.ipynb     ← Triage trend charts + KPI analysis
+│   └── 03_uat.ipynb          ← 17 UAT scenarios with pass/fail results
+│
+├── 📂 src/
+│   ├── generate_dataset.py   ← Seeded synthetic data generator (--seed 42)
+│   ├── verify_dataset.py     ← Post-generation integrity checks
+│   ├── verify_outputs.py     ← Output artifact verification
+│   ├── build_kpi_snapshot.py ← Live KPI snapshot builder
+│   └── verify_report_html.py ← HTML report export verifier
+│
+├── 📊 outputs/
+│   ├── rejects.csv                     ← Row-level reject detail
+│   ├── triage_summary.csv              ← Weekly aggregated triage
+│   ├── story_map.csv                   ← 10-week story structure
+│   ├── submission_tracker_template.csv ← Ops ownership + SLA tracker
+│   └── screenshots/                    ← Chart PNGs for reports
+│
+├── 📄 docs/
+│   ├── Encounters_QA_Report.pdf/html   ← Executive report (code hidden)
+│   ├── UAT_Evidence_Pack.pdf/html      ← UAT evidence + traceability
+│   ├── runbook_v0_1.md                 ← Step-by-step SOP
+│   ├── kpi_snapshot.md                 ← Live-generated KPIs
+│   ├── CASE_STUDY.md                   ← Hiring manager narrative
+│   ├── AUDIT_RECEIPT.md                ← Cryptographic audit trail
+│   └── traceability_matrix.csv         ← Req → test → output linkage
+│
+├── 🗄️ data_raw/
+│   ├── encounters_header.csv           ← Synthetic encounter headers
+│   ├── encounters_lines.csv            ← Synthetic line items
+│   ├── reference_members.csv           ← Member eligibility reference
+│   └── reference_providers.csv         ← Provider roster reference
+│
+└── 🔧 scripts/
+    ├── export_reports.ps1              ← HTML/PDF export automation
+    └── release_gate.ps1                ← Pre-release verification gate
+```
+
+---
+
+## 🚀 Quick Start — Contract-Locked Reproducibility
+
+Every run is seed-locked to `--seed 42` and `--run_date 2026-05-10`. Any reviewer can regenerate identical outputs independently.
+
 ```powershell
+# 1. Activate environment
+.\.venv\Scripts\Activate.ps1
+
+# 2. Generate + verify synthetic dataset
 python src/generate_dataset.py --seed 42 --run_date 2026-05-10 --out_dir .
 python src/verify_dataset.py --run_date 2026-05-10
+
+# 3. Verify outputs + rebuild KPIs
 python src/verify_outputs.py
 python src/build_kpi_snapshot.py
+
+# 4. Export HTML reports (code hidden)
 python src/verify_report_html.py
 powershell -ExecutionPolicy Bypass -File scripts/export_reports.ps1 -SkipPdf
 ```
 
-Expected result: verifiers pass and refreshed HTML reports are written to `docs/`.
+**Expected result:** All verifiers pass. Refreshed HTML reports written to `docs/`.
 
-## Release Checklist
-1. Run release gate: `powershell -ExecutionPolicy Bypass -File` [scripts/release_gate.ps1](scripts/release_gate.ps1)
-2. Manual PDF step (only if PDF export fails): print [docs/Encounters_QA_Report.html](docs/Encounters_QA_Report.html) and [docs/UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html) to PDF.
-3. Artifacts land in:
-   - `docs/`: [Encounters_QA_Report.pdf](docs/Encounters_QA_Report.pdf), [UAT_Evidence_Pack.pdf](docs/UAT_Evidence_Pack.pdf), [Encounters_QA_Report.html](docs/Encounters_QA_Report.html), [UAT_Evidence_Pack.html](docs/UAT_Evidence_Pack.html), [kpi_snapshot.md](docs/kpi_snapshot.md), [AUDIT_RECEIPT.md](docs/AUDIT_RECEIPT.md)
-   - `outputs/`: rejects, triage, story map, submission tracker template, and UAT folder evidence
-
-## Optional: Re-Execute Notebooks
-If you want to regenerate validation/UAT artifacts by executing notebooks:
+### Re-Execute Notebooks (Optional)
 ```powershell
 python -m nbconvert --to notebook --execute --inplace notebooks/01_validate.ipynb
 python -m nbconvert --to notebook --execute --inplace notebooks/03_uat.ipynb
 ```
 
-## Export HTML/PDF (Code Hidden)
-Run:
+### Release Gate
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\export_reports.ps1
+powershell -ExecutionPolicy Bypass -File scripts/release_gate.ps1
 ```
 
-This produces code-hidden HTML:
-- `docs/Encounters_QA_Report.html`
-- `docs/UAT_Evidence_Pack.html`
+---
 
-Script also attempts PDF export with `--to pdf --no-input`.
+## 🔐 Reproducibility & Audit Trail
 
-## PDF Fallback
-If PDF export fails due to missing pandoc/LaTeX:
-1. Open `docs/Encounters_QA_Report.html` in browser.
-2. Press `Ctrl+P`.
-3. Choose `Save as PDF`.
-4. Save to `docs/Encounters_QA_Report.pdf`.
-5. Repeat for `docs/UAT_Evidence_Pack.html` -> `docs/UAT_Evidence_Pack.pdf`.
+This pack is **deterministic by design:**
+
+- Synthetic data generated with a fixed seed (`--seed 42`) — identical outputs every run
+- All KPIs derived programmatically from `outputs/` — no manual entry
+- Cryptographic audit receipt in [`docs/AUDIT_RECEIPT.md`](docs/AUDIT_RECEIPT.md)
+- UAT traceability matrix links every requirement → test scenario → output artifact
+- PHI-free: no real member, provider, or encounter data anywhere in this repo
+
+---
+
+## 🗺️ What's Next (Roadmap)
+
+- [ ] **Scheduled automation** — CI job triggers weekly batch QA on each Monday delivery
+- [ ] **Extended anomaly rules** — promote `ALLOWED_GT_CHARGE` rate > 5% to HIGH-severity batch flag
+- [ ] **Remediation SLA dashboard** — surface overdue reprocessing assignments in the executive report
+- [ ] **EDI/837 bridge** — lightweight X12 pre-parse to populate tabular inputs from raw transaction sets
+
+---
+
+## 📬 About This Project
+
+This is a **portfolio evidence pack** demonstrating healthcare data QA skills applicable to:
+
+- 🏥 Payer encounter operations and analytics roles
+- 📋 Healthcare BA / QA analyst positions
+- 🔬 Data engineering roles in managed care or government programs
+- 📊 Compliance, audit, and reporting functions in health plans
+
+> All data is **100% synthetic and PHI-free.** This pack simulates a real payer workflow for portfolio and evaluation purposes only.
+
+---
+
+<div align="center">
+
+**[📄 View Full Report](docs/Encounters_QA_Report.pdf)** · **[✅ UAT Evidence](docs/UAT_Evidence_Pack.pdf)** · **[🧠 Case Study](docs/CASE_STUDY.md)** · **[📋 Runbook SOP](docs/runbook_v0_1.md)**
+
+</div>
